@@ -7,11 +7,13 @@
 //
 
 import PerfectHTTP
+import PerfectHTTPServer
 
 let schema = SchemaProvider().schema
 
 let graphRoute = Route(method: .get, uri: "/graphql") { (request, response) in
-  let result = try! schema.execute(request: "query GetAllEvents { allEvents { name } }")
+  let query = request.queryParams.first!.1
+  let result = try! schema.execute(request: query)
 
   response.setHeader(.contentType, value: "application/json")
   response.appendBody(string: "\(result)")
