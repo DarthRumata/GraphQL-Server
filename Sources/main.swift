@@ -2,6 +2,7 @@
 import PerfectLib
 import PerfectHTTP
 import PerfectHTTPServer
+import PerfectRequestLogger
 
 // Create HTTP server.
 let server = HTTPServer()
@@ -22,7 +23,12 @@ server.addRoutes(routes)
 // Set a listen port of 8181
 server.serverPort = 8181
 
+let logger = RequestLogger()
+RequestLogFile.location = "/users/rumata/Develop/myLog.log"
 
+server.setRequestFilters([(logger, .high)])
+// Response filter at low priority to be executed last
+server.setResponseFilters([(logger, .low)])
 
 do {
   // Launch the HTTP server.
