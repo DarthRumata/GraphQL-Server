@@ -30,7 +30,7 @@ enum HistoricalEventType: String {
 
 struct HistoricalEvent {
   let name: String
-  let date: String
+  let date: Date
   let description: String
   let type: HistoricalEventType
 }

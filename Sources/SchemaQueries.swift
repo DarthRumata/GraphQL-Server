@@ -28,9 +28,24 @@ enum SchemaQueries {
 
 private func getEvents() -> [HistoricalEvent] {
   return [
-    HistoricalEvent(name: "First man born", date: "10 mln BC", description: "First man was born", type: .common),
-    HistoricalEvent(name: "Antoine de Saint-Exupéry", date: "1900-06-29", description: "Antoine Marie Jean-Baptiste Roger, comte de Saint-Exupéry was born", type: .greatPerson),
-    HistoricalEvent(name: "The Battle of Pavia", date: "1525-02-24", description: "Decisive engagement of the Italian War ", type: .battle)
+    HistoricalEvent(
+      name: "First man born",
+      date: "10000-01-01 BC".toDate(),
+      description: "First man was born",
+      type: .common
+    ),
+    HistoricalEvent(
+      name: "Antoine de Saint-Exupéry",
+      date: "1900-06-29 AD".toDate(),
+      description: "Antoine Marie Jean-Baptiste Roger, comte de Saint-Exupéry was born",
+      type: .greatPerson
+    ),
+    HistoricalEvent(
+      name: "The Battle of Pavia",
+      date: "1525-02-24 AD".toDate(),
+      description: "Decisive engagement of the Italian War ",
+      type: .battle
+    )
   ]
 }
 
