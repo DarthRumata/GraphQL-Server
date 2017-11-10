@@ -10,7 +10,21 @@ import GraphQL
 import Graphiti
 import Foundation
 
-extension HistoricalEventType: InputType, OutputType {}
+extension HistoricalEventType: InputType, OutputType {
+
+  init(map: Map) throws {
+    guard let value = map.string, let type = HistoricalEventType(rawValue: value) else {
+      throw MapError.incompatibleType
+    }
+
+    self = type
+  }
+
+  func asMap() throws -> Map {
+    return rawValue.map
+  }
+
+}
 extension HistoricalEvent: OutputType {}
 extension Date: OutputType, InputType {}
 
