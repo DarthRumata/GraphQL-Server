@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92D194751FBAEB7600A7F82B /* SecurityDataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */; };
 		92E832461FB64E4F003DB68E /* StORMRow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E832451FB64E4F003DB68E /* StORMRow+Extensions.swift */; };
 		OBJ_1000 /* a_enum.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_248 /* a_enum.c */; };
 		OBJ_1001 /* a_gentm.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_249 /* a_gentm.c */; };
@@ -1631,6 +1632,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		92D194731FBAEAAF00A7F82B /* Security.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Security.plist; sourceTree = "<group>"; };
+		92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityDataReader.swift; sourceTree = "<group>"; };
 		92E832451FB64E4F003DB68E /* StORMRow+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StORMRow+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* HistoricalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalEvent.swift; sourceTree = "<group>"; };
 		OBJ_100 /* Metadata+Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metadata+Kind.swift"; sourceTree = "<group>"; };
@@ -3894,16 +3897,16 @@
 			path = Schema;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
+				92D194731FBAEAAF00A7F82B /* Security.plist */,
 				OBJ_7 /* Sources */,
 				OBJ_16 /* Tests */,
 				OBJ_17 /* Dependencies */,
 				OBJ_942 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_51 /* Type Translation */ = {
@@ -3982,6 +3985,7 @@
 				OBJ_10 /* HistoricalEvent.swift */,
 				OBJ_11 /* main.swift */,
 				OBJ_12 /* MongoConnector.swift */,
+				92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */,
 				OBJ_13 /* Schema.swift */,
 				92E832451FB64E4F003DB68E /* StORMRow+Extensions.swift */,
 				OBJ_14 /* SchemaQueries.swift */,
@@ -4570,7 +4574,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_942 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -4921,6 +4925,7 @@
 				OBJ_2100 /* GraphQLRoute.swift in Sources */,
 				OBJ_2101 /* HistoricalEvent.swift in Sources */,
 				OBJ_2102 /* main.swift in Sources */,
+				92D194751FBAEB7600A7F82B /* SecurityDataReader.swift in Sources */,
 				OBJ_2103 /* MongoConnector.swift in Sources */,
 				92E832461FB64E4F003DB68E /* StORMRow+Extensions.swift in Sources */,
 				OBJ_2104 /* Schema.swift in Sources */,
