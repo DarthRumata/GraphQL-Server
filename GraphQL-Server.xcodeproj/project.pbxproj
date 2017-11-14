@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		92D194751FBAEB7600A7F82B /* SecurityDataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */; };
+		92D194781FBAEFC300A7F82B /* Security.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92D194731FBAEAAF00A7F82B /* Security.plist */; };
 		92E832461FB64E4F003DB68E /* StORMRow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E832451FB64E4F003DB68E /* StORMRow+Extensions.swift */; };
 		OBJ_1000 /* a_enum.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_248 /* a_enum.c */; };
 		OBJ_1001 /* a_gentm.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_249 /* a_gentm.c */; };
@@ -4481,6 +4482,7 @@
 			buildPhases = (
 				OBJ_2098 /* Sources */,
 				OBJ_2107 /* Frameworks */,
+				92D194761FBAEEC800A7F82B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -4602,6 +4604,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		92D194761FBAEEC800A7F82B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92D194781FBAEFC300A7F82B /* Security.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		OBJ_1745 /* ShellScript */ = {

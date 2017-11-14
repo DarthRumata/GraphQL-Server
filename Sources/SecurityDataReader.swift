@@ -14,15 +14,15 @@ struct SecurityDataReader {
   let databaseName: String
   
   init?() {
+    let path = "/Users/rumata/Develop/Projects/Education/GraphQL-Server/Security.plist"
     guard
-      let path = Bundle.main.path(forResource: "Security", ofType: "plist"),
-      let dict = NSDictionary(contentsOfFile: path) as? [String: String] else
+      let dict = NSDictionary(contentsOfFile: path) as? [String: Any] else
     {
         return nil
     }
     
-    mongoHost = dict["mongo_host"]!
-    databaseName = dict["database"]!
+    mongoHost = dict["mongo_host"] as! String
+    databaseName = dict["database"] as! String
   }
   
 }
