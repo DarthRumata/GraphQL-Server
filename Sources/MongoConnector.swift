@@ -15,8 +15,6 @@ class MongoConnector {
 
   static let shared = MongoConnector()
 
-  private lazy var historicalEventCollection: HistoricalEvent = HistoricalEvent()
-
   init() {
     MongoDBConnection.host = security.mongoHost
     MongoDBConnection.database = security.databaseName
@@ -24,12 +22,36 @@ class MongoConnector {
 
   func getAllEvents() -> [HistoricalEvent] {
     do {
-      try historicalEventCollection.find()
-      return historicalEventCollection.rows()
+      let event = HistoricalEvent()
+      try event.find()
+      return event.rows()
     } catch let error {
       print(error)
       return []
     }
+  }
+  
+  func getHistoricalEvent(id: String) -> HistoricalEvent? {
+    do {
+      let event = HistoricalEvent()
+      try event.get(id)
+      return event
+    } catch let error {
+      print(error)
+      return nil
+    }
+  }
+
+  func addHistoricalEvent(input: HistoricalEventInput) throws -> HistoricalEvent {
+    let event = HistoricalEvent()
+    event.id = event.newUUID()
+    event.name = input.name
+    event.date = input.date
+    event.description = input.description
+    event.type = input.type
+    try event.save()
+
+    return event
   }
   
 }

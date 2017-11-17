@@ -16,6 +16,7 @@ struct SchemaProvider {
     schema = try! Schema<NoRoot, NoContext> { schema in
       try SchemaTypes.addTypes(for: schema)
       try SchemaQueries.addQueries(for: schema)
+      try SchemaMutations.addMutations(for: schema)
     }
   }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		92D194751FBAEB7600A7F82B /* SecurityDataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */; };
 		92D194781FBAEFC300A7F82B /* Security.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92D194731FBAEAAF00A7F82B /* Security.plist */; };
+		92DA2D851FBD905C00EB6606 /* SchemaMutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DA2D841FBD905C00EB6606 /* SchemaMutations.swift */; };
 		92E832461FB64E4F003DB68E /* StORMRow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E832451FB64E4F003DB68E /* StORMRow+Extensions.swift */; };
 		OBJ_1000 /* a_enum.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_248 /* a_enum.c */; };
 		OBJ_1001 /* a_gentm.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_249 /* a_gentm.c */; };
@@ -1635,6 +1636,7 @@
 /* Begin PBXFileReference section */
 		92D194731FBAEAAF00A7F82B /* Security.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Security.plist; sourceTree = "<group>"; };
 		92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityDataReader.swift; sourceTree = "<group>"; };
+		92DA2D841FBD905C00EB6606 /* SchemaMutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaMutations.swift; sourceTree = "<group>"; };
 		92E832451FB64E4F003DB68E /* StORMRow+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StORMRow+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_10 /* HistoricalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalEvent.swift; sourceTree = "<group>"; };
 		OBJ_100 /* Metadata+Kind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metadata+Kind.swift"; sourceTree = "<group>"; };
@@ -3991,6 +3993,7 @@
 				92E832451FB64E4F003DB68E /* StORMRow+Extensions.swift */,
 				OBJ_14 /* SchemaQueries.swift */,
 				OBJ_15 /* SchemaTypes.swift */,
+				92DA2D841FBD905C00EB6606 /* SchemaMutations.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -4944,6 +4947,7 @@
 				OBJ_2104 /* Schema.swift in Sources */,
 				OBJ_2105 /* SchemaQueries.swift in Sources */,
 				OBJ_2106 /* SchemaTypes.swift in Sources */,
+				92DA2D851FBD905C00EB6606 /* SchemaMutations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7110,6 +7114,7 @@
 		OBJ_965 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

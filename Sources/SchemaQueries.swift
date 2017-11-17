@@ -10,19 +10,31 @@ import GraphQL
 import Graphiti
 
 enum SchemaQueries {
-
+  
   static func addQueries(for schema: SchemaBuilder<NoRoot, NoContext>) throws {
-    try allEvents(with: schema)
-  }
-
-  private static func allEvents(with schema: SchemaBuilder<NoRoot, NoContext>) throws {
     try schema.query { query in
-      try query.field(name: "allEvents", type: [HistoricalEvent].self) { _, _, _, _ in
-        MongoConnector.shared.getAllEvents()
-      }
+      try allEvents(with: query)
+      try historicalEvent(with: query)
     }
   }
-
+  
+  private static func allEvents(with query: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
+    try query.field(name: "allEvents", type: [HistoricalEvent].self) { _, _, _, _ in
+      MongoConnector.shared.getAllEvents()
+    }
+  }
+  
+  struct HistoricalEventArguments : Arguments {
+    let id: String
+    static let descriptions = ["id": "id of the historical event"]
+  }
+  
+  private static func historicalEvent(with query: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
+    try query.field(name: "historicalEvent") { (_, arguments: HistoricalEventArguments, _, _) in
+      MongoConnector.shared.getHistoricalEvent(id: arguments.id)
+    }
+  }
+  
 }
 
 //HistoricalEvent(

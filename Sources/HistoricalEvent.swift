@@ -48,4 +48,12 @@ class HistoricalEvent: MongoDBStORM {
       return event
     }
   }
+
+  override func modifyValue(_ v: Any, forKey k: String) -> Any {
+    if k == "type" {
+      return type.rawValue
+    } else {
+      return super.modifyValue(v, forKey: k)
+    }
+  }
 }

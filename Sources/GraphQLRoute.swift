@@ -9,6 +9,8 @@
 import PerfectHTTP
 import PerfectRequestLogger
 import PerfectLib
+import GraphQL
+import Foundation
 
 let schema = SchemaProvider().schema
 
@@ -16,25 +18,35 @@ let graphRoute = Route(methods: [.get, .post], uri: "/graphql") { (request, resp
   defer {
     response.completed()
   }
-
+  
   let query: String?
+  var variables: [String: Map]?
   if request.method == .post {
     if let body = request.postBodyString, let json = try? body.jsonDecode() as? [String: Any] {
       query = json?["query"] as? String
+      let variablesMap = try? map(from: json?["variables"])
+      if let map = variablesMap, case .dictionary(let dict) = map {
+        variables = dict
+      }
     } else {
       query = nil
     }
   } else {
     query = request.queryParams.first?.1
   }
-
+  
+  
   guard let safeQuery = query else {
     response.status = HTTPResponseStatus.badRequest
     return
   }
-
-  let result = try! schema.execute(request: safeQuery)
-
-  response.setHeader(.contentType, value: "application/json")
-  response.appendBody(string: "\(result)")
+  
+  do {
+    let result = try schema.execute(request: safeQuery, variables: variables ?? [:])
+    response.setHeader(.contentType, value: "application/json")
+    response.appendBody(string: "\(result)")
+  } catch let error {
+    response.status = HTTPResponseStatus.internalServerError
+    print(error)
+  }
 }
