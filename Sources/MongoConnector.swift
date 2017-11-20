@@ -8,6 +8,7 @@
 
 import Foundation
 import MongoDBStORM
+import StORM
 
 private let security = SecurityDataReader()!
 
@@ -24,7 +25,7 @@ class MongoConnector {
     do {
       let event = HistoricalEvent()
       try event.find()
-      return event.rows()
+      return event.rows().reversed()
     } catch let error {
       print(error)
       return []
@@ -62,6 +63,14 @@ class MongoConnector {
     event.description = input.description
     event.type = input.type
     try event.save()
+
+    return event
+  }
+
+  func deleteHistoricalEvent(id: String) throws -> HistoricalEvent {
+    let event = HistoricalEvent()
+    try event.get(id)
+    try event.delete()
 
     return event
   }

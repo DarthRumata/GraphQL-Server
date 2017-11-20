@@ -16,6 +16,7 @@ enum SchemaMutations {
     try schema.mutation { builder in
       try createEvent(with: builder)
       try updateEvent(with: builder)
+      try deleteEvent(with: builder)
     }
   }
 
@@ -33,6 +34,17 @@ enum SchemaMutations {
   private static func updateEvent(with builder: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
     try builder.field(name: "updateEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventInputArguments, _, _) in
       try MongoConnector.shared.updateHistoricalEvent(input: arguments.input)
+    }
+  }
+
+  struct HistoricalEventDeleteArguments : Arguments {
+    let id: String
+    static let descriptions = ["id": "id of the historical event"]
+  }
+
+  private static func deleteEvent(with builder: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
+    try builder.field(name: "deleteEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventDeleteArguments, _, _) in
+      try MongoConnector.shared.deleteHistoricalEvent(id: arguments.id)
     }
   }
 
