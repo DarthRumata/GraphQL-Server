@@ -29,9 +29,11 @@ extension HistoricalEvent: OutputType {}
 extension Date: OutputType, InputType {}
 
 struct HistoricalEventInput: InputType {
+
+  var id: String?
   var name: String = ""
   var date: Date = Date()
-  var description: String = ""
+  var description: String?
   var type: HistoricalEventType = .common
 
 }
@@ -53,14 +55,14 @@ enum SchemaTypes {
   }
 
   private static func historicalEventObject(with schema: SchemaBuilder<NoRoot, NoContext>) throws {
-    try schema.object(type: HistoricalEvent.self) { event in
-      try event.exportFields()
+    try schema.object(type: HistoricalEvent.self) { builder in
+      try builder.exportFields()
     }
   }
 
   private static func historicalEventInput(with schema: SchemaBuilder<NoRoot, NoContext>) throws {
-    try schema.inputObject(type: HistoricalEventInput.self) { event in
-      try event.exportFields()
+    try schema.inputObject(type: HistoricalEventInput.self) { builder in
+      try builder.exportFields()
     }
   }
 

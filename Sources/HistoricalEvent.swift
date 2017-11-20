@@ -21,9 +21,8 @@ class HistoricalEvent: MongoDBStORM {
   var id: String = ""
   var name: String = ""
   var date: Date = Date()
-  var description: String = ""
   var type: HistoricalEventType = .common
-
+  var description: String?
 
   override init() {
     super.init()
@@ -35,7 +34,7 @@ class HistoricalEvent: MongoDBStORM {
     id = (this~>"_id") ?? id
     name = (this~>"name") ?? name
     date = (this~>"date") ?? date
-    description = (this~>"description") ?? ""
+    description = (this~>"description")
     let typeString = (this~>"type") ?? ""
     type = HistoricalEventType(rawValue: typeString) ?? type
   }
