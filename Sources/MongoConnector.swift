@@ -53,5 +53,17 @@ class MongoConnector {
 
     return event
   }
+
+  func updateHistoricalEvent(input: HistoricalEventInput) throws -> HistoricalEvent {
+    let event = HistoricalEvent()
+    try event.get(input.id!)
+    event.name = input.name
+    event.date = input.date
+    event.description = input.description
+    event.type = input.type
+    try event.save()
+
+    return event
+  }
   
 }

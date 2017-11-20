@@ -15,6 +15,7 @@ enum SchemaMutations {
   static func addMutations(for schema: SchemaBuilder<NoRoot, NoContext>) throws {
     try schema.mutation { builder in
       try createEvent(with: builder)
+      try updateEvent(with: builder)
     }
   }
 
@@ -26,6 +27,12 @@ enum SchemaMutations {
   private static func createEvent(with builder: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
     try builder.field(name: "createEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventInputArguments, _, _) in
       try MongoConnector.shared.addHistoricalEvent(input: arguments.input)
+    }
+  }
+
+  private static func updateEvent(with builder: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
+    try builder.field(name: "updateEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventInputArguments, _, _) in
+      try MongoConnector.shared.updateHistoricalEvent(input: arguments.input)
     }
   }
 

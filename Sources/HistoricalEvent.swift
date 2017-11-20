@@ -9,6 +9,7 @@
 import Foundation
 import StORM
 import MongoDBStORM
+import MongoDB
 
 enum HistoricalEventType: String {
   case common = "common"
@@ -51,8 +52,11 @@ class HistoricalEvent: MongoDBStORM {
   override func modifyValue(_ v: Any, forKey k: String) -> Any {
     if k == "type" {
       return type.rawValue
+    } else if k == "id" {
+      return BSON.OID(id)
     } else {
       return super.modifyValue(v, forKey: k)
     }
   }
+
 }
