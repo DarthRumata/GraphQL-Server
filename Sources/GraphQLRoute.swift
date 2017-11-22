@@ -12,7 +12,8 @@ import PerfectLib
 import GraphQL
 import Foundation
 
-let schema = SchemaProvider().schema
+private let schema = SchemaProvider().schema
+private let context = RequestContext()
 
 let graphRoute = Route(methods: [.get, .post], uri: "/graphql") { (request, response) in
   defer {
@@ -42,7 +43,7 @@ let graphRoute = Route(methods: [.get, .post], uri: "/graphql") { (request, resp
   }
   
   do {
-    let result = try schema.execute(request: safeQuery, variables: variables ?? [:])
+    let result = try schema.execute(request: safeQuery, context: context, variables: variables ?? [:])
     response.setHeader(.contentType, value: "application/json")
     response.appendBody(string: "\(result)")
   } catch let error {

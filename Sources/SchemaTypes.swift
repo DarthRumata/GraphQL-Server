@@ -47,26 +47,26 @@ private let dateFormatter: DateFormatter = {
 
 enum SchemaTypes {
 
-  static func addTypes(for schema: SchemaBuilder<NoRoot, NoContext>) throws {
+  static func addTypes(for schema: SchemaBuilder<NoRoot, RequestContext>) throws {
     try dateScalar(with: schema)
     try historicalEventTypeEnum(with: schema)
     try historicalEventObject(with: schema)
     try historicalEventInput(with: schema)
   }
 
-  private static func historicalEventObject(with schema: SchemaBuilder<NoRoot, NoContext>) throws {
+  private static func historicalEventObject(with schema: SchemaBuilder<NoRoot, RequestContext>) throws {
     try schema.object(type: HistoricalEvent.self) { builder in
       try builder.exportFields()
     }
   }
 
-  private static func historicalEventInput(with schema: SchemaBuilder<NoRoot, NoContext>) throws {
+  private static func historicalEventInput(with schema: SchemaBuilder<NoRoot, RequestContext>) throws {
     try schema.inputObject(type: HistoricalEventInput.self) { builder in
       try builder.exportFields()
     }
   }
 
-  private static func historicalEventTypeEnum(with schema: SchemaBuilder<NoRoot, NoContext>) throws {
+  private static func historicalEventTypeEnum(with schema: SchemaBuilder<NoRoot, RequestContext>) throws {
     try schema.enum(type: HistoricalEventType.self) { type in
       try type.value(name: "COMMON", value: .common)
       try type.value(name: "GREAT_PERSON", value: .greatPerson)
@@ -74,7 +74,7 @@ enum SchemaTypes {
     }
   }
 
-  private static func dateScalar(with schema: SchemaBuilder<NoRoot, NoContext>) throws {
+  private static func dateScalar(with schema: SchemaBuilder<NoRoot, RequestContext>) throws {
     try schema.scalar(name: "dateISO", type: Date.self, build: { (builder) in
       builder.serialize { (date) -> Map in
         let dateString = dateFormatter.string(from: date)

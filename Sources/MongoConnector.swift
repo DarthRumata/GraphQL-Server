@@ -14,8 +14,6 @@ private let security = SecurityDataReader()!
 
 class MongoConnector {
 
-  static let shared = MongoConnector()
-
   init() {
     MongoDBConnection.host = security.mongoHost
     MongoDBConnection.database = security.databaseName

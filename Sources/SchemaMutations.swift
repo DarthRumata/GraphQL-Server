@@ -12,7 +12,7 @@ import Graphiti
 
 enum SchemaMutations {
 
-  static func addMutations(for schema: SchemaBuilder<NoRoot, NoContext>) throws {
+  static func addMutations(for schema: SchemaBuilder<NoRoot, RequestContext>) throws {
     try schema.mutation { builder in
       try createEvent(with: builder)
       try updateEvent(with: builder)
@@ -25,15 +25,15 @@ enum SchemaMutations {
     static let descriptions = ["input": "content of the historical event"]
   }
 
-  private static func createEvent(with builder: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
-    try builder.field(name: "createEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventInputArguments, _, _) in
-      try MongoConnector.shared.addHistoricalEvent(input: arguments.input)
+  private static func createEvent(with builder: ObjectTypeBuilder<NoRoot, RequestContext, NoRoot>) throws {
+    try builder.field(name: "createEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventInputArguments, context, _) in
+      try context.mongo.addHistoricalEvent(input: arguments.input)
     }
   }
 
-  private static func updateEvent(with builder: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
-    try builder.field(name: "updateEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventInputArguments, _, _) in
-      try MongoConnector.shared.updateHistoricalEvent(input: arguments.input)
+  private static func updateEvent(with builder: ObjectTypeBuilder<NoRoot, RequestContext, NoRoot>) throws {
+    try builder.field(name: "updateEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventInputArguments, context, _) in
+      try context.mongo.updateHistoricalEvent(input: arguments.input)
     }
   }
 
@@ -42,9 +42,9 @@ enum SchemaMutations {
     static let descriptions = ["id": "id of the historical event"]
   }
 
-  private static func deleteEvent(with builder: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
-    try builder.field(name: "deleteEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventDeleteArguments, _, _) in
-      try MongoConnector.shared.deleteHistoricalEvent(id: arguments.id)
+  private static func deleteEvent(with builder: ObjectTypeBuilder<NoRoot, RequestContext, NoRoot>) throws {
+    try builder.field(name: "deleteEvent", type: HistoricalEvent.self) { (_, arguments: HistoricalEventDeleteArguments, context, _) in
+      try context.mongo.deleteHistoricalEvent(id: arguments.id)
     }
   }
 

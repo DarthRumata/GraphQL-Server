@@ -11,16 +11,16 @@ import Graphiti
 
 enum SchemaQueries {
   
-  static func addQueries(for schema: SchemaBuilder<NoRoot, NoContext>) throws {
+  static func addQueries(for schema: SchemaBuilder<NoRoot, RequestContext>) throws {
     try schema.query { query in
       try allEvents(with: query)
       try historicalEvent(with: query)
     }
   }
   
-  private static func allEvents(with query: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
-    try query.field(name: "allEvents", type: [HistoricalEvent].self) { _, _, _, _ in
-      MongoConnector.shared.getAllEvents()
+  private static func allEvents(with query: ObjectTypeBuilder<NoRoot, RequestContext, NoRoot>) throws {
+    try query.field(name: "allEvents", type: [HistoricalEvent].self) { _, _, context, _ in
+      context.mongo.getAllEvents()
     }
   }
   
@@ -29,9 +29,9 @@ enum SchemaQueries {
     static let descriptions = ["id": "id of the historical event"]
   }
   
-  private static func historicalEvent(with query: ObjectTypeBuilder<NoRoot, NoContext, NoRoot>) throws {
-    try query.field(name: "historicalEvent") { (_, arguments: HistoricalEventArguments, _, _) in
-      MongoConnector.shared.getHistoricalEvent(id: arguments.id)
+  private static func historicalEvent(with query: ObjectTypeBuilder<NoRoot, RequestContext, NoRoot>) throws {
+    try query.field(name: "historicalEvent") { (_, arguments: HistoricalEventArguments, context, _) in
+      context.mongo.getHistoricalEvent(id: arguments.id)
     }
   }
   
