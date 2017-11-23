@@ -53,7 +53,7 @@ class HistoricalEvent: MongoDBStORM {
     if k == "type" {
       return type.rawValue
     } else if k == "id" {
-      return BSON.OID(id)
+      return (v as? String) == "" ? v : BSON.OID(id)
     } else {
       return super.modifyValue(v, forKey: k)
     }

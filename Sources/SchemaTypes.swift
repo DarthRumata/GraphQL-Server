@@ -27,6 +27,7 @@ extension HistoricalEventType: InputType, OutputType {
 }
 extension HistoricalEvent: OutputType {}
 extension Date: OutputType, InputType {}
+extension Page: OutputType {}
 
 struct HistoricalEventInput: InputType {
 
@@ -52,6 +53,7 @@ enum SchemaTypes {
     try historicalEventTypeEnum(with: schema)
     try historicalEventObject(with: schema)
     try historicalEventInput(with: schema)
+    try historicalPageObject(with: schema)
   }
 
   private static func historicalEventObject(with schema: SchemaBuilder<NoRoot, RequestContext>) throws {
@@ -96,6 +98,12 @@ enum SchemaTypes {
         return ast.value.map
       }
     })
+  }
+
+  private static func historicalPageObject(with schema: SchemaBuilder<NoRoot, RequestContext>) throws {
+    try schema.object(type: Page.self) { builder in
+      try builder.exportFields()
+    }
   }
 
 }

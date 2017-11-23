@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		925BAE701FC5CA9C008E922E /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925BAE6F1FC5CA9C008E922E /* Page.swift */; };
 		92D194751FBAEB7600A7F82B /* SecurityDataReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */; };
 		92D194781FBAEFC300A7F82B /* Security.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92D194731FBAEAAF00A7F82B /* Security.plist */; };
 		92DA2D851FBD905C00EB6606 /* SchemaMutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DA2D841FBD905C00EB6606 /* SchemaMutations.swift */; };
@@ -1634,6 +1635,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		925BAE6F1FC5CA9C008E922E /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		92D194731FBAEAAF00A7F82B /* Security.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Security.plist; sourceTree = "<group>"; };
 		92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityDataReader.swift; sourceTree = "<group>"; };
 		92DA2D841FBD905C00EB6606 /* SchemaMutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaMutations.swift; sourceTree = "<group>"; };
@@ -3987,6 +3989,7 @@
 				OBJ_9 /* GraphQLRoute.swift */,
 				OBJ_10 /* HistoricalEvent.swift */,
 				OBJ_11 /* main.swift */,
+				925BAE6F1FC5CA9C008E922E /* Page.swift */,
 				OBJ_12 /* MongoConnector.swift */,
 				92D194741FBAEB7600A7F82B /* SecurityDataReader.swift */,
 				OBJ_13 /* Schema.swift */,
@@ -4944,6 +4947,7 @@
 				92D194751FBAEB7600A7F82B /* SecurityDataReader.swift in Sources */,
 				OBJ_2103 /* MongoConnector.swift in Sources */,
 				92E832461FB64E4F003DB68E /* StORMRow+Extensions.swift in Sources */,
+				925BAE701FC5CA9C008E922E /* Page.swift in Sources */,
 				OBJ_2104 /* Schema.swift in Sources */,
 				OBJ_2105 /* SchemaQueries.swift in Sources */,
 				OBJ_2106 /* SchemaTypes.swift in Sources */,

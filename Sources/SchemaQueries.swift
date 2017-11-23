@@ -17,10 +17,16 @@ enum SchemaQueries {
       try historicalEvent(with: query)
     }
   }
-  
+
+  struct HistoricalPageArguments : Arguments {
+    let cursor: String?
+    let limit: Int
+    static let descriptions = ["cursor": "id of last historical event at page", "limit": "page size"]
+  }
+
   private static func allEvents(with query: ObjectTypeBuilder<NoRoot, RequestContext, NoRoot>) throws {
-    try query.field(name: "allEvents", type: [HistoricalEvent].self) { _, _, context, _ in
-      context.mongo.getAllEvents()
+    try query.field(name: "allEvents", type: Page.self) { (_, arguments: HistoricalPageArguments, context, _) in
+      try context.mongo.getEvents(after: arguments.cursor, limit: arguments.limit)
     }
   }
   
