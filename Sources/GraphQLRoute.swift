@@ -15,28 +15,23 @@ import Foundation
 private let schema = SchemaProvider().schema
 private let context = RequestContext()
 
-let graphRoute = Route(methods: [.get, .post], uri: "/graphql") { (request, response) in
+let graphRoute = Route(method: .post, uri: "/graphql") { (request, response) in
   defer {
     response.completed()
   }
   
   let query: String?
   var variables: [String: Map]?
-  if request.method == .post {
-    if let body = request.postBodyString, let json = try? body.jsonDecode() as? [String: Any] {
-      query = json?["query"] as? String
-      let variablesMap = try? map(from: json?["variables"])
-      if let map = variablesMap, case .dictionary(let dict) = map {
-        variables = dict
-      }
-    } else {
-      query = nil
+  if let body = request.postBodyString, let json = try? body.jsonDecode() as? [String: Any] {
+    query = json?["query"] as? String
+    let variablesMap = try? map(from: json?["variables"])
+    if let map = variablesMap, case .dictionary(let dict) = map {
+      variables = dict
     }
   } else {
-    query = request.queryParams.first?.1
+    query = nil
   }
-  
-  
+
   guard let safeQuery = query else {
     response.status = HTTPResponseStatus.badRequest
     return
