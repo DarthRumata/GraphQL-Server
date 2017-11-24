@@ -43,6 +43,7 @@ let graphRoute = Route(method: .post, uri: "/graphql") { (request, response) in
     response.appendBody(string: "\(result)")
   } catch let error {
     response.status = HTTPResponseStatus.internalServerError
+    response.appendBody(string: error.localizedDescription)
     print(error)
   }
 }
